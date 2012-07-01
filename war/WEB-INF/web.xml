@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  
+  <servlet>
+    <servlet-name>Demo</servlet-name>
+    <servlet-class>fi.foyt.ckc.gaedemo.Servlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>CKC</servlet-name>
+    <servlet-class>fi.foyt.ckc.CKCConnectorServlet</servlet-class>
+    <init-param>
+      <param-name>connector-class</param-name>
+      <param-value>fi.foyt.ckc.gaedemo.DemoConnector</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet>
+    <servlet-name>SystemServiceServlet</servlet-name>
+    <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
+    <init-param>
+      <param-name>services</param-name>
+      <param-value/>
+    </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>Demo</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>CKC</servlet-name>
+    <url-pattern>/ckc/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>SystemServiceServlet</servlet-name>
+    <url-pattern>/_ah/spi/*</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>
