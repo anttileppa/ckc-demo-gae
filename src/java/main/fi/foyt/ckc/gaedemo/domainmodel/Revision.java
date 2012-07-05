@@ -1,5 +1,8 @@
 package fi.foyt.ckc.gaedemo.domainmodel;
 
+import java.io.UnsupportedEncodingException;
+
+import com.google.appengine.api.datastore.Blob;
 import com.google.appengine.api.datastore.Entity;
 
 public class Revision extends AbstractObject {
@@ -33,7 +36,12 @@ public class Revision extends AbstractObject {
 		Entity entity = newEntity();
 		
 		entity.setProperty("number", number);
-		entity.setProperty("patch", patch);
+		if (this.patch != null) {
+      try {
+	      entity.setProperty("patch", new com.google.appengine.api.datastore.Blob(patch.getBytes("UTF-8")));
+      } catch (UnsupportedEncodingException e) {
+      }
+		}
 		
 		return entity;
 	}
@@ -45,7 +53,12 @@ public class Revision extends AbstractObject {
 		}
 		
 		this.number = (Long) entity.getProperty("number");
-		this.patch = (String) entity.getProperty("patch");
+		com.google.appengine.api.datastore.Blob dataBlob = (Blob) entity.getProperty("patch"); 
+    try {
+	    this.patch = dataBlob != null ? new String(dataBlob.getBytes(), "UTF-8") : null;
+    } catch (UnsupportedEncodingException e) {
+	    this.patch = null;
+    }
 	}
 	
 	private Long number;

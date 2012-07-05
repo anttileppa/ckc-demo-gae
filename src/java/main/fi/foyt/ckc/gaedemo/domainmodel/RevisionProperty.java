@@ -12,12 +12,12 @@ public class RevisionProperty extends AbstractObject {
 		super("REVISION_PROPERTY", revision.getKey());
 	}
 	
-	public String getName() {
-	  return name;
+	public Long getNameId() {
+	  return nameId;
   }
 	
-	public void setName(String name) {
-	  this.name = name;
+	public void setNameId(Long nameId) {
+	  this.nameId = nameId;
   }
 	
 	public String getValue() {
@@ -32,7 +32,7 @@ public class RevisionProperty extends AbstractObject {
 	public Entity toEntity() {
 		Entity entity = newEntity();
 
-		entity.setProperty("name", this.name);
+		entity.setProperty("nameId", this.nameId);
 		entity.setProperty("value", this.value);
 
 		return entity;
@@ -44,10 +44,10 @@ public class RevisionProperty extends AbstractObject {
 			this.setKey(entity.getKey());
 		}
 
-		this.name = (String) entity.getProperty("name");
+		this.nameId = (Long) entity.getProperty("nameId");
 		this.value = (String) entity.getProperty("value");
 	}
 
-	private String name;
+	private Long nameId;
 	private String value;
 }

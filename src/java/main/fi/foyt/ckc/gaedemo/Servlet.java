@@ -1,6 +1,10 @@
 package fi.foyt.ckc.gaedemo;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +28,21 @@ public class Servlet extends HttpServlet {
 		
 		Long documentId = NumberUtils.createLong(request.getParameter("documentId"));
 		if (documentId == null) {
-			Document document = documentDAO.create(DEFAULT_CONTENT);
-			response.sendRedirect(request.getRequestURI() + "?documentId=" + document.getKey().getId());
+			String baseUrl = request.getRequestURL().toString();
+			
+			ByteArrayOutputStream contentStream = new ByteArrayOutputStream();
+			URL url = new URL(baseUrl + "/testdata.html");
+			URLConnection connection = url.openConnection();
+			connection.setDoOutput(true);
+			InputStream inputStream = connection.getInputStream();
+			byte[] buf = new byte[256];
+			int l = 0;
+			while ((l = inputStream.read(buf, 0, 256)) > 0) {
+				contentStream.write(buf, 0, l);
+			}
+			
+			Document document = documentDAO.create(new String(contentStream.toByteArray(), "UTF-8"));
+			response.sendRedirect(baseUrl + "?documentId=" + document.getKey().getId());
 		} else {
 			Document document = documentDAO.findById(documentId);
 			request.setAttribute("document", document);
@@ -33,6 +50,4 @@ public class Servlet extends HttpServlet {
 		  request.getRequestDispatcher("/index.jsp").include(request, response);
 		}
 	}
-	
-	private final static String DEFAULT_CONTENT = "<h3>Welcome to test CKEditor's collaboration plugin!</h3>";
 }
