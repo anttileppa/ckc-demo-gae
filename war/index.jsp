@@ -10,8 +10,8 @@
         var CONTEXTPATH = "${pageContext.request.contextPath}";
         
         CKEDITOR.plugins.addExternal('ckc', CONTEXTPATH + '/scripts/ckplugins/ckc/');
-
         CKEDITOR.replace("sample", {
+          skin: 'demo,' + CONTEXTPATH + '/ckskins/demo/',
           height: '400px',
           toolbar: [
             { name: 'document', items : [ 'CKCSave', 'CKCRevert', 'DocProps', 'Templates' ] },
