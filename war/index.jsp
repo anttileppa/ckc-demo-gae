@@ -29,7 +29,6 @@
           extraPlugins: 'docprops,ckc',
           ckc: {
             documentId: ${document.key.id},
-            originalRevision: ${document.revisionNumber},
             updateInterval: 500,
             connectorUrl: CONTEXTPATH + '/ckc/'
           }
@@ -41,6 +40,6 @@
     <h2>Welcome to CKC plugin demo!</h2>
     <p>CKC plugin is a plugin for CKEditor (<a href="http://ckeditor.com">http://ckeditor.com</a>) that enables CKEditor to be edited simultaneously by several users.</p>
     <p>You can find more information about this project from the project page at: <a href="http://http://code.google.com/p/ckc-plugin">http://code.google.com/p/ckc-plugin</a></p>
-    <textarea name="sample">${document.data}</textarea>
+    <textarea name="sample"></textarea>
   </body>
 </html>
