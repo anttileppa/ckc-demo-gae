@@ -3,7 +3,7 @@
   <groupId>fi.foyt.ckc</groupId>
   <artifactId>gae-demo</artifactId>
   <name>CKC Plugin GAE demo</name>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.4</version>
   <licenses>
     <license>
       <name>GNU LGPL v3</name>
