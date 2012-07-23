@@ -38,6 +38,7 @@
   </head>
   <body onload="onLoad(event);">
     <h2>Welcome to CKC plugin demo!</h2>
+    <i>This demo uses Java connector. You can find more information about connectors from configuration documentation: <a href="http://code.google.com/p/ckc-plugin/wiki/Configuartion">http://code.google.com/p/ckc-plugin/wiki/Configuartion</a></i>
     <p>CKC plugin is a plugin for CKEditor (<a href="http://ckeditor.com">http://ckeditor.com</a>) that enables CKEditor to be edited simultaneously by several users.</p>
     <p>You can find more information about this project from the project page at: <a href="http://http://code.google.com/p/ckc-plugin">http://code.google.com/p/ckc-plugin</a></p>
     <textarea name="sample"></textarea>
